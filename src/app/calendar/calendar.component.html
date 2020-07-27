@@ -1,6 +1,27 @@
 <style>
   .num-sem{
-    width: 100px;
+    width: 48px;
+  }
+  .not-current-month{
+    background: #f3f3f3;
+  }
+  tr td:not(.num-sem){
+    height: 150px;
+    width: 200px;
+  }
+  tr td.num-sem{
+    background: #e8e8e8;
+  }
+  .actual-day{
+    background: #0095dc;
+    color: white;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    margin: 0 auto;
+    line-height: 28px;
+    text-align: center;
+    font-size: 14px;
   }
 </style>
 
@@ -15,18 +36,17 @@
         <thead>
         <tr>
           <th class="num-sem"></th>
-          <th>Lun</th>
-          <th>Mart</th>
-          <th>Mié</th>
-          <th>Jue</th>
-          <th>Vie</th>
-          <th>Sáb</th>
-          <th>Dom</th>
+          <th *ngFor="let textDay of daysWeek" class="text-center">{{textDay}}</th>
         </tr>
         </thead>
-        <!--<tbody>
-          <tr></tr>
-        </tbody>-->
+        <tbody>
+          <tr *ngFor="let data of calendar">
+            <td class="num-sem text-center">{{data.week}}</td>
+            <td *ngFor="let day  of data.days" [ngClass]="{'not-current-month': !day.isActualMonth}" class="text-center">
+              <div [ngClass]="{'actual-day': day.actualDay}">{{day.day}}</div>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
