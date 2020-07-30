@@ -7,14 +7,14 @@
       <div class="col">
         <div class="row">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-light btn-circle">
+            <button type="button" class="btn btn-light btn-circle" (click)="previousDate()">
               <i class="material-icons">keyboard_arrow_left</i>
             </button>
-            <button type="button" class="btn btn-light btn-circle ml-3">
+            <button type="button" class="btn btn-light btn-circle ml-3" (click)="nextDate()">
               <i class="material-icons">keyboard_arrow_right</i>
             </button>
           </div>
-          <h4 class="ml-3" style="line-height: 38px;">{{objActualDate.month}} {{objActualDate.year}}</h4>
+          <h4 class="ml-3" style="line-height: 38px;">{{objActualDate.month | uppercase }} {{objActualDate.year}}</h4>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
     </div>
     <!-- Calendario -->
     <div class="col">
-      <table class="table table-borderless">
+      <table class="table table-borderless" style="border-collapse: initial;">
         <thead>
         <tr>
           <th class="num-sem"></th>
