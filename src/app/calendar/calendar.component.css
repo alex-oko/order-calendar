@@ -1,5 +1,6 @@
 .num-sem{
-  width: 48px;
+  width: 23px;
+  padding: 5px;
 }
 .not-current-month{
   background: #f3f3f3;
