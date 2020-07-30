@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import * as Moment from 'moment';
 import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
+moment.locale('es');
 
 @Component({
   selector: 'app-calendar',
@@ -14,17 +15,18 @@ export class CalendarComponent implements OnInit {
   objActualDate = {
     month: moment().format('MMMM'),
     year: moment().format('YYYY'),
-    momentFormat: moment()
+    momentFormat: undefined
   };
   daysWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   calendar = [];
   constructor() {}
 
   ngOnInit(): void {
-      this.loadInfoCalendar(this.objActualDate.momentFormat);
+    this.objActualDate.momentFormat = moment();
+    this.loadInfoCalendar(this.objActualDate.momentFormat);
   }
 
-  loadInfoCalendar(actualDate): any {
+  loadInfoCalendar(actualDate): void {
     const startWeek = moment(actualDate).startOf('month').startOf('isoWeek');
     const endWeek = moment(actualDate).endOf('month').endOf('isoWeek');
     const selectMonthStart = moment(actualDate).startOf('month');
@@ -56,7 +58,24 @@ export class CalendarComponent implements OnInit {
         array.push(objDate);
     });
     this.calendar = array;
-    console.log(this.calendar);
+  }
+
+  nextDate(): void  {
+    this.objActualDate = {
+      month: moment(this.objActualDate.momentFormat).add(1, 'M').format('MMMM'),
+      year: moment(this.objActualDate.momentFormat).add(1, 'M').format('YYYY'),
+      momentFormat: moment(this.objActualDate.momentFormat).add(1, 'M')
+    };
+    this.loadInfoCalendar(this.objActualDate.momentFormat);
+  }
+
+  previousDate(): void {
+    this.objActualDate = {
+      month: moment(this.objActualDate.momentFormat).subtract(1, 'M').format('MMMM'),
+      year: moment(this.objActualDate.momentFormat).subtract(1, 'M').format('YYYY'),
+      momentFormat: moment(this.objActualDate.momentFormat).subtract(1, 'M')
+    };
+    this.loadInfoCalendar(this.objActualDate.momentFormat);
   }
 
 }
