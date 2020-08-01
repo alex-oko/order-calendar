@@ -7,6 +7,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 
+import 'bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
