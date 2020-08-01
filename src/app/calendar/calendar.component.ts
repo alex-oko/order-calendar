@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import * as _ from 'lodash';
 import * as Moment from 'moment';
@@ -7,6 +7,7 @@ const moment = extendMoment(Moment);
 moment.locale('es');
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
