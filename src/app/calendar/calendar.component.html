@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="col-12 mt-3">
     <div class="row">
-      <div class="col-2">
-         <h4 style="line-height: 38px;">calendar</h4>
+      <div class="col-2 pl-0">
+         <h4 style="line-height: 38px;">Pedidos</h4>
       </div>
       <div class="col">
         <div class="row">
@@ -21,11 +21,14 @@
   </div>
   <div class="row">
     <div class="col-2">
-     <!-- <h1>calendar</h1>-->
+      <p class="font-weight-light">Pedidos realizados en este mes</p>
+      <button type="button" class="btn bg-redwine btn-lg btn-block" data-toggle="modal" data-target="#modalCreateEvent" (click)="openModalCreateEvent()">
+        <i class="material-icons">add</i>
+      </button>
     </div>
     <!-- Calendario -->
     <div class="col">
-      <table class="table table-borderless" style="border-collapse: initial;">
+      <table class="table table-borderless" style="border-collapse: initial;     height: 91vh;">
         <thead>
         <tr>
           <th class="num-sem"></th>
@@ -41,6 +44,30 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-floating bg-redwine" data-toggle="modal" data-target="#modalCreateEvent" (click)="openModalCreateEvent()">
+  <i class="material-icons">add</i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalCreateEvent" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>

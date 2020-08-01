@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-
 import * as _ from 'lodash';
 import * as Moment from 'moment';
 import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
 moment.locale('es');
+import * as $ from 'jquery';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -77,6 +77,10 @@ export class CalendarComponent implements OnInit {
       momentFormat: moment(this.objActualDate.momentFormat).subtract(1, 'M')
     };
     this.loadInfoCalendar(this.objActualDate.momentFormat);
+  }
+
+  openModalCreateEvent(): void{
+    $('#modalCreateEvent').modal('show');
   }
 
 }
