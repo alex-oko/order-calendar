@@ -6,7 +6,7 @@
   background: #f3f3f3;
 }
 tr td:not(.num-sem){
-  height: 150px;
+  max-height: 150px;
   width: 200px;
 }
 tr td.num-sem{
