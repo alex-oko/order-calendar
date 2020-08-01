@@ -1,14 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-button i{
-  vertical-align: middle;
-}
-.btn-circle{
-  border-radius: 50% !important;
-  width: 45px;
-  height: 45px;
+.bg-redwine{
+  background: #9e0000 !important;
+  color: white !important;
 }
 
 /*========================== Card ==============================*/
 .card {
   border: none !important;
+}
+/*========================== Button ==============================*/
+button i{
+  vertical-align: middle;
+}
+button.btn-circle{
+  border-radius: 50% !important;
+  width: 45px;
+  height: 45px;
+}
+button.btn-floating{
+  position: fixed;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  bottom: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  border: none;
 }
