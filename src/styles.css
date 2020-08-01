@@ -7,3 +7,8 @@ button i{
   width: 45px;
   height: 45px;
 }
+
+/*========================== Card ==============================*/
+.card {
+  border: none !important;
+}
