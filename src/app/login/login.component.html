@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="container" style="height: 100vh;">
+  <div class="col align-self-center pt-5">
+    <div class="row justify-content-center">
+      <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 30rem;">
+        <div class="card-body">
+          <div class="col-12 mb-4 pl-0 pr-0">
+            <h6 class="mb-0 font-spot font-weight-bolder">Iniciar</h6>
+          </div>
+          <div class="col-12 pl-0 pr-0">
+            <form #loginForm="ngForm"> <!--(keydown.enter)="login()"-->
+              <div class="row">
+                <div class="element-input col-sm-12 mb-3">
+                  <label class="form-control-placeholder" for="input_email_login">Correo *</label>
+                  <input type="email" class="form-control" name="email" [(ngModel)]="objLogin.email" id="input_email_login" required email>
+                </div>
+                <div class="element-input col-sm-12 mb-3">
+                  <label class="form-control-placeholder" for="input_password_login">Contaseña *</label>
+                  <input type="password" class="form-control" name="password" [(ngModel)]="objLogin.password" id="input_password_login" required>
+                </div>
+              </div>
+              <div class="col-12 mt-4 mb-4 pl-0 pr-0">
+                <div class="text-center" *ngIf="preloaderLogin">
+                  <div class="spinner-border text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" *ngIf="!preloaderLogin" routerLink="/calendar"> <!--[disabled]="loginForm.form.invalid" (click)="login()"-->
+                  Entrar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
