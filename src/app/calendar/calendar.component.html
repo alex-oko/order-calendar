@@ -53,21 +53,86 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalCreateEvent" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar pedido</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <form #addEventForm="ngForm">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6 form-group">
+            <label for="endDate">Fecha de entrega</label>
+            <input type="text" class="form-control" id="endDate" name="endDate" [(ngModel)]="objCreateEvent.endDate">
+          </div>
+            <div class="col-6 form-group">
+              <label for="name">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="objCreateEvent.name">
+            </div>
+            <div class="col-6 form-group">
+              <label for="tel">Telefono</label>
+              <input type="tel" class="form-control" id="tel" name="tel" [(ngModel)]="objCreateEvent.tel">
+            </div>
+            <div class="col-6 form-group">
+              <label for="dir">Direccion de entrega</label>
+              <input type="text" class="form-control" id="dir" name="dir" [(ngModel)]="objCreateEvent.dir">
+            </div>
+            <div class="col-12 table-responsive-md">
+              <table class="table table-borderless table-striped">
+                <thead>
+                <tr>
+                  <th scope="col" style="width: 8rem">Ref.</th>
+                  <th scope="col" style="width: 10rem">Modelo</th>
+                  <th scope="col" style="width: 6rem;">Cant.</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col" style="width: 8rem;">Valor Und.</th>
+                  <th scope="col" style="width: 8rem;">Dcto</th>
+                  <th scope="col">Total</th>
+                  <th scope="col" style="width: 3rem;">-</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let order of objCreateEvent.orders; index as pos">
+                  <td style="width: 8rem">
+                    <input type="text" class="form-control" name="ref_{{order.idOrder}}" [(ngModel)]="order.ref">
+                  </td>
+                  <td style="width: 10rem">
+                    <input type="text" class="form-control" name="model_{{order.idOrder}}" [(ngModel)]="order.model">
+                  </td>
+                  <td style="width: 6rem;">
+                    <input type="number" class="form-control" name="quantity_{{order.idOrder}}" [(ngModel)]="order.quantity">
+                  </td>
+                  <td>
+                    <textarea class="form-control" style="height: 38px;" name="description_{{order.idOrder}}" [(ngModel)]="order.description"></textarea>
+                  </td>
+                  <td style="width: 8rem;">
+                    <input type="number" class="form-control" name="unitValue_{{order.idOrder}}" [(ngModel)]="order.unitValue">
+                  </td>
+                  <td style="width: 8rem;">
+                    <input type="number" class="form-control" name="discount_{{order.idOrder}}" [(ngModel)]="order.discount">
+                  </td>
+                  <td>
+                    {{ order.discount ? (order.quantity * order.unitValue) - order.discount : (order.quantity * order.unitValue)}}
+                  </td>
+                  <td style="width: 3rem;">
+                    <button type="submit" class="btn btn-danger" *ngIf="objCreateEvent.orders.length > 1" (click)="removeOrder(pos)">X</button>
+                    <button type="submit" class="btn btn-warning" *ngIf="objCreateEvent.orders.length === 1" (click)="clearOrder()">L</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <button type="submit" class="btn btn-primary" (click)="addOrder()">agregar pedido</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Crear</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

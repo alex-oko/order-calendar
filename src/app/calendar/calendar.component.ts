@@ -20,9 +20,26 @@ export class CalendarComponent implements OnInit {
   };
   daysWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   calendar = [];
+  objCreateEvent;
   constructor() {}
 
   ngOnInit(): void {
+    this.objCreateEvent = {
+      startDate: undefined,
+      endDate: undefined,
+      name: undefined,
+      phone: undefined,
+      dir: undefined,
+      orders: [{
+        idOrder: 1,
+        ref: undefined,
+        model: undefined,
+        quantity: 1,
+        description: undefined,
+        unitValue: 0,
+        discount: 0
+      }],
+    };
     this.objActualDate.momentFormat = moment();
     this.loadInfoCalendar(this.objActualDate.momentFormat);
   }
@@ -81,6 +98,35 @@ export class CalendarComponent implements OnInit {
 
   openModalCreateEvent(): void{
     $('#modalCreateEvent').modal('show');
+  }
+
+  addOrder(): void {
+    const obj = {
+      idOrder: _.max(_.map(this.objCreateEvent.orders, (order) => order.idOrder)) + 1,
+      ref: undefined,
+      model: undefined,
+      quantity: 1,
+      description: undefined,
+      unitValue: 0,
+      discount: 0
+    };
+    this.objCreateEvent.orders.push(obj);
+  }
+
+  removeOrder(pos): void {
+    this.objCreateEvent.orders.splice(pos, 1);
+  }
+
+  clearOrder(): void {
+    this.objCreateEvent.orders[0] = {
+      idOrder: 0,
+      ref: undefined,
+      model: undefined,
+      quantity: 1,
+      description: undefined,
+      unitValue: 0,
+      discount: 0
+    };
   }
 
 }
