@@ -64,21 +64,55 @@
       <form #addEventForm="ngForm">
         <div class="modal-body">
           <div class="row">
-            <div class="col-6 form-group">
-            <label for="endDate">Fecha de entrega</label>
-            <input type="text" class="form-control" id="endDate" name="endDate" [(ngModel)]="objCreateEvent.endDate">
-          </div>
-            <div class="col-6 form-group">
-              <label for="name">Nombre</label>
-              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="objCreateEvent.name">
+            <div class="col-4">
+              <div class="row">
+                <div class="col form-group">
+                  <label for="startDate">Fecha</label>
+                  <input type="text" class="form-control" id="startDate" name="startDate" [(ngModel)]="objCreateEvent.startDate">
+                </div>
+                <div class="col form-group">
+                  <label for="endDate">Fecha de entrega</label>
+                  <input type="text" class="form-control" id="endDate" name="endDate" [(ngModel)]="objCreateEvent.endDate">
+                </div>
+              </div>
             </div>
-            <div class="col-6 form-group">
-              <label for="tel">Telefono</label>
-              <input type="tel" class="form-control" id="tel" name="tel" [(ngModel)]="objCreateEvent.tel">
+            <div class="col-12">
+              <div class="row">
+                <div class="col form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="objCreateEvent.name">
+                </div>
+                <div class="col form-group">
+                  <label for="telephone">Telefono</label>
+                  <input type="tel" class="form-control" id="telephone" name="telephone" [(ngModel)]="objCreateEvent.telephone">
+                </div>
+                <div class="col form-group">
+                  <label for="address">Direccion</label>
+                  <input type="text" class="form-control" id="address" name="address" [(ngModel)]="objCreateEvent.address">
+                </div>
+              </div>
             </div>
-            <div class="col-6 form-group">
-              <label for="dir">Direccion de entrega</label>
-              <input type="text" class="form-control" id="dir" name="dir" [(ngModel)]="objCreateEvent.dir">
+            <div class="col-12">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="present" name="isPresent" [(ngModel)]="objCreateEvent.isPresent">
+                <label class="form-check-label" for="present">Regalo?</label>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="objCreateEvent.isPresent">
+              <div class="row">
+                <div class="col form-group">
+                  <label for="name">Recibe</label>
+                  <input type="text" class="form-control" id="receives" name="name" [(ngModel)]="objCreateEvent.receives">
+                </div>
+                <div class="col form-group">
+                  <label for="recipientsPhone">Telefono</label>
+                  <input type="tel" class="form-control" id="recipientsPhone" name="telephone" [(ngModel)]="objCreateEvent.recipientsPhone">
+                </div>
+                <div class="col form-group">
+                  <label for="deliveryAddress">Direccion de entrega</label>
+                  <input type="text" class="form-control" id="deliveryAddress" name="address" [(ngModel)]="objCreateEvent.deliveryAddress">
+                </div>
+              </div>
             </div>
             <div class="col-12 table-responsive-md">
               <table class="table table-borderless table-striped">

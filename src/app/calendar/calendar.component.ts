@@ -25,11 +25,15 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.objCreateEvent = {
-      startDate: undefined,
-      endDate: undefined,
+      startDate: moment().format('DD-MM-YYYY'),
+      endDate: moment().add(15, 'd').format('DD-MM-YYYY'),
       name: undefined,
-      phone: undefined,
-      dir: undefined,
+      telephone: undefined,
+      address: undefined,
+      isPresent: false,
+      receives: undefined,
+      recipientsPhone: undefined,
+      deliveryAddress: undefined,
       orders: [{
         idOrder: 1,
         ref: undefined,
