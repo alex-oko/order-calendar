@@ -14,8 +14,12 @@ button i{
 }
 button.btn-circle{
   border-radius: 50% !important;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
+}
+button.btn-circle i{
+  width: 100%;
+  text-align: center;
 }
 button.btn-floating{
   position: fixed;

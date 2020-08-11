@@ -7,14 +7,14 @@
       <div class="col">
         <div class="row">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-light btn-circle" (click)="previousDate()">
+            <button type="button" class="btn btn-light btn-circle p-0" (click)="previousDate()">
               <i class="material-icons">keyboard_arrow_left</i>
             </button>
-            <button type="button" class="btn btn-light btn-circle ml-3" (click)="nextDate()">
+            <button type="button" class="btn btn-light btn-circle p-0 ml-3" (click)="nextDate()">
               <i class="material-icons">keyboard_arrow_right</i>
             </button>
           </div>
-          <h4 class="ml-3" style="line-height: 38px;">{{objActualDate.month | uppercase }} {{objActualDate.year}}</h4>
+          <h4 class="ml-3" style="line-height: 38px;">{{objActualDate.date | uppercase }}</h4>
         </div>
       </div>
     </div>

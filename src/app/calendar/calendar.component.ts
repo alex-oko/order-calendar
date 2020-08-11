@@ -14,8 +14,7 @@ import * as $ from 'jquery';
 })
 export class CalendarComponent implements OnInit {
   objActualDate = {
-    month: moment().format('MMMM'),
-    year: moment().format('YYYY'),
+    date: moment().format('MMMM YYYY'),
     momentFormat: undefined
   };
   daysWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
@@ -84,8 +83,7 @@ export class CalendarComponent implements OnInit {
 
   nextDate(): void  {
     this.objActualDate = {
-      month: moment(this.objActualDate.momentFormat).add(1, 'M').format('MMMM'),
-      year: moment(this.objActualDate.momentFormat).add(1, 'M').format('YYYY'),
+      date: moment(this.objActualDate.momentFormat).add(1, 'M').format('MMMM  YYYY'),
       momentFormat: moment(this.objActualDate.momentFormat).add(1, 'M')
     };
     this.loadInfoCalendar(this.objActualDate.momentFormat);
@@ -93,8 +91,7 @@ export class CalendarComponent implements OnInit {
 
   previousDate(): void {
     this.objActualDate = {
-      month: moment(this.objActualDate.momentFormat).subtract(1, 'M').format('MMMM'),
-      year: moment(this.objActualDate.momentFormat).subtract(1, 'M').format('YYYY'),
+      date: moment(this.objActualDate.momentFormat).subtract(1, 'M').format('MMMM  YYYY'),
       momentFormat: moment(this.objActualDate.momentFormat).subtract(1, 'M')
     };
     this.loadInfoCalendar(this.objActualDate.momentFormat);
