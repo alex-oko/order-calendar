@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import * as _ from 'lodash';
 import * as Moment from 'moment';
-import { extendMoment } from 'moment-range';
+import {extendMoment} from 'moment-range';
+
 const moment = extendMoment(Moment);
 moment.locale('es');
 import * as $ from 'jquery';
@@ -20,7 +21,9 @@ export class CalendarComponent implements OnInit {
   daysWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   calendar = [];
   objCreateEvent;
-  constructor() {}
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.objCreateEvent = {
@@ -60,28 +63,28 @@ export class CalendarComponent implements OnInit {
     let objDate;
     const array = [];
     _.forEach(weeksArray, (w) => {
-        objDate = {
-          week: w.isoWeek(),
-          days: []
-        };
-        _.forEach(daysArray, (day) => {
-          if (w.isoWeek() === day.isoWeek()) {
-            objDate.days.push({
-              objMoment: day,
-              date: day.format('YYYY-MM-DD'),
-              week: day.isoWeek(),
-              day: day.format('DD'),
-              actualDay: moment(day.format('YYYY-MM-DD')).isSame(moment().format('YYYY-MM-DD')),
-              isActualMonth: day.isBetween(selectMonthStart, selectMonthEnd, null, '[]')
-            });
-          }
-        });
-        array.push(objDate);
+      objDate = {
+        week: w.isoWeek(),
+        days: []
+      };
+      _.forEach(daysArray, (day) => {
+        if (w.isoWeek() === day.isoWeek()) {
+          objDate.days.push({
+            objMoment: day,
+            date: day.format('YYYY-MM-DD'),
+            week: day.isoWeek(),
+            day: day.format('DD'),
+            actualDay: moment(day.format('YYYY-MM-DD')).isSame(moment().format('YYYY-MM-DD')),
+            isActualMonth: day.isBetween(selectMonthStart, selectMonthEnd, null, '[]')
+          });
+        }
+      });
+      array.push(objDate);
     });
     this.calendar = array;
   }
 
-  nextDate(): void  {
+  nextDate(): void {
     this.objActualDate = {
       date: moment(this.objActualDate.momentFormat).add(1, 'M').format('MMMM  YYYY'),
       momentFormat: moment(this.objActualDate.momentFormat).add(1, 'M')
@@ -97,7 +100,7 @@ export class CalendarComponent implements OnInit {
     this.loadInfoCalendar(this.objActualDate.momentFormat);
   }
 
-  openModalCreateEvent(): void{
+  openModalCreateEvent(): void {
     $('#modalCreateEvent').modal('show');
   }
 
