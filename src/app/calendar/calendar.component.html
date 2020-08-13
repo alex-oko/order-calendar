@@ -2,7 +2,7 @@
   <div class="col-12 mt-3">
     <div class="row">
       <div class="col-2 pl-0">
-         <h4 style="line-height: 38px;">Pedidos</h4>
+        <h4 style="line-height: 38px;">Pedidos</h4>
       </div>
       <div class="col">
         <div class="row">
@@ -22,9 +22,20 @@
   <div class="row">
     <div class="col-2">
       <p class="font-weight-light">Pedidos realizados en este mes</p>
-      <button type="button" class="btn bg-redwine btn-lg btn-block" data-toggle="modal" data-target="#modalCreateEvent" (click)="openModalCreateEvent()">
-        <i class="material-icons">add</i>
-      </button>
+      <div class="content-orders">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item p-2" *ngFor="let order of arrayOrders">
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-1">{{order.name}}</h6>
+              <span class="font-weight-bold">{{order.deliveryOrder > 1 ? order.deliveryOrder + ' dias': order.deliveryOrder + ' dia'}}</span>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-1 font-weight-lighter">Articulos pedidos</h6>
+              <span class="font-weight-bold">{{order.orders.length}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <!-- Calendario -->
     <div class="col">
@@ -36,18 +47,19 @@
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of calendar">
-            <td class="num-sem text-center">{{data.week}}</td>
-            <td *ngFor="let day  of data.days" [ngClass]="{'not-current-month': !day.isActualMonth}" class="text-center">
-              <div [ngClass]="{'actual-day': day.actualDay}">{{day.day}}</div>
-            </td>
-          </tr>
+        <tr *ngFor="let data of calendar">
+          <td class="num-sem text-center">{{data.week}}</td>
+          <td *ngFor="let day  of data.days" [ngClass]="{'not-current-month': !day.isActualMonth}" class="text-center">
+            <div [ngClass]="{'actual-day': day.actualDay}">{{day.day}}</div>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<button type="button" class="btn btn-floating bg-redwine" data-toggle="modal" data-target="#modalCreateEvent" (click)="openModalCreateEvent()">
+<button type="button" class="btn btn-floating bg-redwine" data-toggle="modal" data-target="#modalCreateEvent"
+        (click)="openModalCreateEvent()">
   <i class="material-icons">add</i>
 </button>
 
@@ -68,11 +80,13 @@
               <div class="row">
                 <div class="col form-group">
                   <label for="startDate">Fecha</label>
-                  <input type="text" class="form-control" id="startDate" name="startDate" [(ngModel)]="objCreateEvent.startDate">
+                  <input type="text" class="form-control" id="startDate" name="startDate"
+                         [(ngModel)]="objCreateEvent.startDate">
                 </div>
                 <div class="col form-group">
                   <label for="endDate">Fecha de entrega</label>
-                  <input type="text" class="form-control" id="endDate" name="endDate" [(ngModel)]="objCreateEvent.endDate">
+                  <input type="text" class="form-control" id="endDate" name="endDate"
+                         [(ngModel)]="objCreateEvent.endDate">
                 </div>
               </div>
             </div>
@@ -84,17 +98,20 @@
                 </div>
                 <div class="col form-group">
                   <label for="telephone">Telefono</label>
-                  <input type="tel" class="form-control" id="telephone" name="telephone" [(ngModel)]="objCreateEvent.telephone">
+                  <input type="tel" class="form-control" id="telephone" name="telephone"
+                         [(ngModel)]="objCreateEvent.telephone">
                 </div>
                 <div class="col form-group">
                   <label for="address">Direccion</label>
-                  <input type="text" class="form-control" id="address" name="address" [(ngModel)]="objCreateEvent.address">
+                  <input type="text" class="form-control" id="address" name="address"
+                         [(ngModel)]="objCreateEvent.address">
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="present" name="isPresent" [(ngModel)]="objCreateEvent.isPresent">
+                <input type="checkbox" class="form-check-input" id="present" name="isPresent"
+                       [(ngModel)]="objCreateEvent.isPresent">
                 <label class="form-check-label" for="present">Regalo?</label>
               </div>
             </div>
@@ -102,15 +119,18 @@
               <div class="row">
                 <div class="col form-group">
                   <label for="name">Recibe</label>
-                  <input type="text" class="form-control" id="receives" name="name" [(ngModel)]="objCreateEvent.receives">
+                  <input type="text" class="form-control" id="receives" name="name"
+                         [(ngModel)]="objCreateEvent.receives">
                 </div>
                 <div class="col form-group">
                   <label for="recipientsPhone">Telefono</label>
-                  <input type="tel" class="form-control" id="recipientsPhone" name="telephone" [(ngModel)]="objCreateEvent.recipientsPhone">
+                  <input type="tel" class="form-control" id="recipientsPhone" name="telephone"
+                         [(ngModel)]="objCreateEvent.recipientsPhone">
                 </div>
                 <div class="col form-group">
                   <label for="deliveryAddress">Direccion de entrega</label>
-                  <input type="text" class="form-control" id="deliveryAddress" name="address" [(ngModel)]="objCreateEvent.deliveryAddress">
+                  <input type="text" class="form-control" id="deliveryAddress" name="address"
+                         [(ngModel)]="objCreateEvent.deliveryAddress">
                 </div>
               </div>
             </div>
@@ -137,23 +157,31 @@
                     <input type="text" class="form-control" name="model_{{order.idOrder}}" [(ngModel)]="order.model">
                   </td>
                   <td style="width: 6rem;">
-                    <input type="number" class="form-control" name="quantity_{{order.idOrder}}" [(ngModel)]="order.quantity">
+                    <input type="number" class="form-control" name="quantity_{{order.idOrder}}"
+                           [(ngModel)]="order.quantity">
                   </td>
                   <td>
-                    <textarea class="form-control" style="height: 38px;" name="description_{{order.idOrder}}" [(ngModel)]="order.description"></textarea>
+                    <textarea class="form-control" style="height: 38px;" name="description_{{order.idOrder}}"
+                              [(ngModel)]="order.description"></textarea>
                   </td>
                   <td style="width: 8rem;">
-                    <input type="number" class="form-control" name="unitValue_{{order.idOrder}}" [(ngModel)]="order.unitValue">
+                    <input type="number" class="form-control" name="unitValue_{{order.idOrder}}"
+                           [(ngModel)]="order.unitValue">
                   </td>
                   <td style="width: 8rem;">
-                    <input type="number" class="form-control" name="discount_{{order.idOrder}}" [(ngModel)]="order.discount">
+                    <input type="number" class="form-control" name="discount_{{order.idOrder}}"
+                           [(ngModel)]="order.discount">
                   </td>
                   <td>
                     {{ order.discount ? (order.quantity * order.unitValue) - order.discount : (order.quantity * order.unitValue)}}
                   </td>
                   <td style="width: 3rem;">
-                    <button type="submit" class="btn btn-danger" *ngIf="objCreateEvent.orders.length > 1" (click)="removeOrder(pos)">X</button>
-                    <button type="submit" class="btn btn-warning" *ngIf="objCreateEvent.orders.length === 1" (click)="clearOrder()">L</button>
+                    <button type="submit" class="btn btn-danger" *ngIf="objCreateEvent.orders.length > 1"
+                            (click)="removeOrder(pos)">X
+                    </button>
+                    <button type="submit" class="btn btn-warning" *ngIf="objCreateEvent.orders.length === 1"
+                            (click)="clearOrder()">L
+                    </button>
                   </td>
                 </tr>
                 </tbody>
