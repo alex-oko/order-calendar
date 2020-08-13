@@ -21,6 +21,7 @@ export class CalendarComponent implements OnInit {
   daysWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   calendar = [];
   objCreateEvent;
+  arrayOrders = [];
 
   constructor() {
   }
@@ -48,6 +49,50 @@ export class CalendarComponent implements OnInit {
     };
     this.objActualDate.momentFormat = moment();
     this.loadInfoCalendar(this.objActualDate.momentFormat);
+    this.arrayOrders = [
+      {
+        endDate: moment().add(15, 'd'),
+        deliveryOrder: moment().add(15, 'd').diff(moment(), 'days'),
+        name: 'Alexis Corrale Perea',
+        telephone: 3162419244,
+        address: 'cra 7 # 6-63',
+        isPresent: false,
+        isPersonalized: true,
+        receives: 'Alexis Corrale Perea',
+        recipientsPhone: 3162419244,
+        deliveryAddress: 'cra 7 # 6-63',
+        orders: [{
+          idOrder: 1,
+          ref: 'AB-35',
+          model: 'Alfred',
+          quantity: 4,
+          description: 'Se desea que se tenga un bolsillo adicional ',
+          unitValue: 150000,
+          discount: 50000
+        }],
+      },
+      {
+        endDate: moment().add(15, 'd'),
+        deliveryOrder: moment().add(15, 'd').diff(moment(), 'days'),
+        name: 'Alexis Corrale Perea',
+        telephone: 3162419244,
+        address: 'cra 7 # 6-63',
+        isPresent: false,
+        isPersonalized: true,
+        receives: 'Alexis Corrale Perea',
+        recipientsPhone: 3162419244,
+        deliveryAddress: 'cra 7 # 6-63',
+        orders: [{
+          idOrder: 1,
+          ref: 'AB-35',
+          model: 'Alfred',
+          quantity: 4,
+          description: 'Se desea que se tenga un bolsillo adicional ',
+          unitValue: 150000,
+          discount: 50000
+        }],
+      }
+    ];
   }
 
   loadInfoCalendar(actualDate): void {
