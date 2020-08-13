@@ -145,8 +145,11 @@ export class CalendarComponent implements OnInit {
     this.loadInfoCalendar(this.objActualDate.momentFormat);
   }
 
-  openModalCreateEvent(): void {
-    $('#modalCreateEvent').modal('show');
+  openModalCreateOrder(): void {
+    $('#modalCreateOrder').modal('show');
+  }
+  openModalSeeOrder(): void {
+    $('#modalSeeOrder').modal('show');
   }
 
   addOrder(): void {
