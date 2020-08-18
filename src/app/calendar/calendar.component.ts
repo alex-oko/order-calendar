@@ -28,24 +28,9 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.objCreateEvent = {
-      startDate: moment().format('DD-MM-YYYY'),
-      endDate: moment().add(15, 'd').format('DD-MM-YYYY'),
-      name: undefined,
-      telephone: undefined,
-      address: undefined,
-      isPresent: false,
-      receives: undefined,
-      recipientsPhone: undefined,
-      deliveryAddress: undefined,
       orders: [{
-        idOrder: 1,
-        ref: undefined,
-        model: undefined,
-        quantity: 1,
-        description: undefined,
-        unitValue: 0,
-        discount: 0
-      }],
+        idOrder: 1
+      }]
     };
     this.objActualDate.momentFormat = moment();
     this.loadInfoCalendar(this.objActualDate.momentFormat);

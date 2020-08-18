@@ -90,104 +90,107 @@
                 </div>
               </div>
             </div>
-            <div class="col-12">
+            <!-- Informacion cliente -->
+            <div class="col-12 mt-4">
+              <h5>Info cliente</h5>
               <div class="row">
                 <div class="col form-group">
                   <label for="name">Nombre</label>
                   <input type="text" class="form-control" id="name" name="name" [(ngModel)]="objCreateEvent.name">
                 </div>
-                <div class="col form-group">
-                  <label for="telephone">Telefono</label>
-                  <input type="tel" class="form-control" id="telephone" name="telephone"
-                         [(ngModel)]="objCreateEvent.telephone">
+                <div class="col-2 form-group">
+                  <label for="tel">Telefono</label>
+                  <input type="tel" class="form-control" id="tel" name="tel"
+                         [(ngModel)]="objCreateEvent.tel">
                 </div>
                 <div class="col form-group">
-                  <label for="address">Direccion</label>
-                  <input type="text" class="form-control" id="address" name="address"
-                         [(ngModel)]="objCreateEvent.address">
+                  <label for="dir">Direccion</label>
+                  <input type="text" class="form-control" id="dir" name="dir"
+                         [(ngModel)]="objCreateEvent.dir">
+                </div>
+                <div class="col-2 form-group">
+                  <label for="city">Ciudad</label>
+                  <input type="text" class="form-control" id="city" name="city"
+                         [(ngModel)]="objCreateEvent.city">
+                </div>
+              </div>
+              <div class="col-12 p-0">
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="present" name="isPresent"
+                         [(ngModel)]="objCreateEvent.isPresent">
+                  <label class="form-check-label" for="present">Regalo?</label>
+                </div>
+              </div>
+              <div class="row" *ngIf="objCreateEvent.isPresent">
+                <div class="col form-group">
+                  <label for="name2">Recibe</label>
+                  <input type="text" class="form-control" id="name2" name="name2" [(ngModel)]="objCreateEvent.name2">
+                </div>
+                <div class="col-2 form-group">
+                  <label for="tel2">Telefono</label>
+                  <input type="tel" class="form-control" id="tel2" name="tel2"
+                         [(ngModel)]="objCreateEvent.tel2">
+                </div>
+                <div class="col form-group">
+                  <label for="dir2">Direccion de entrega</label>
+                  <input type="text" class="form-control" id="dir2" name="dir2"
+                         [(ngModel)]="objCreateEvent.dir">
+                </div>
+                <div class="col-2 form-group">
+                  <label for="city2">Ciudad</label>
+                  <input type="text" class="form-control" id="city2" name="city2"
+                         [(ngModel)]="objCreateEvent.city2">
                 </div>
               </div>
             </div>
-            <div class="col-12">
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="present" name="isPresent"
-                       [(ngModel)]="objCreateEvent.isPresent">
-                <label class="form-check-label" for="present">Regalo?</label>
-              </div>
-            </div>
-            <div class="col-12" *ngIf="objCreateEvent.isPresent">
+
+            <!-- Productos -->
+            <h5 class="ml-3 mt-4">Productos</h5>
+            <div class="col-12" *ngFor="let order of objCreateEvent.orders; index as pos">
               <div class="row">
                 <div class="col form-group">
-                  <label for="name">Recibe</label>
-                  <input type="text" class="form-control" id="receives" name="name"
-                         [(ngModel)]="objCreateEvent.receives">
+                  <label for="model_{{order.idOrder}}">Modelo</label>
+                  <input type="text" class="form-control" id="model_{{order.idOrder}}" name="model_{{order.idOrder}}" [(ngModel)]="order.model">
                 </div>
                 <div class="col form-group">
-                  <label for="recipientsPhone">Telefono</label>
-                  <input type="tel" class="form-control" id="recipientsPhone" name="telephone"
-                         [(ngModel)]="objCreateEvent.recipientsPhone">
+                  <label for="size_{{order.idOrder}}">Tamaño</label>
+                  <input type="text" class="form-control" id="size_{{order.idOrder}}" name="size_{{order.idOrder}}" [(ngModel)]="order.size">
+                </div>
+                <div class="col-1 form-group">
+                  <label for="cant_{{order.idOrder}}">Cant.</label>
+                  <input type="number" class="form-control" id="cant_{{order.idOrder}}" name="cant_{{order.idOrder}}" [(ngModel)]="order.cant">
+                </div>
+                <div class="col-3 form-group">
+                  <label for="description_{{order.idOrder}}">Description</label>
+                  <textarea class="form-control" id="description_{{order.idOrder}}" name="description_{{order.idOrder}}" [(ngModel)]="order.description"></textarea>
                 </div>
                 <div class="col form-group">
-                  <label for="deliveryAddress">Direccion de entrega</label>
-                  <input type="text" class="form-control" id="deliveryAddress" name="address"
-                         [(ngModel)]="objCreateEvent.deliveryAddress">
+                  <label for="customValue_{{order.idOrder}}">Cambios $</label>
+                  <input type="number" class="form-control" id="customValue_{{order.idOrder}}" name="customValue_{{order.idOrder}}" [(ngModel)]="order.customValue">
+                </div>
+                <div class="col form-group">
+                  <label for="unitValue_{{order.idOrder}}">Valor Und.</label>
+                  <input type="number" class="form-control" id="unitValue_{{order.idOrder}}" name="unitValue_{{order.idOrder}}" [(ngModel)]="order.unitValue">
+                </div>
+                <div class="col-1 form-group">
+                  <label for="discount_{{order.idOrder}}">Dto.</label>
+                  <input type="number" class="form-control" id="discount_{{order.idOrder}}" name="discount_{{order.idOrder}}" [(ngModel)]="order.discount">
+                </div>
+                <div class="col form-group pr-0">
+                  <label for="total_{{order.idOrder}}">Total</label>
+                  <input type="number" class="form-control" id="total_{{order.idOrder}}" name="total_{{order.idOrder}}" [(ngModel)]="order.total">
+                </div>
+                <div class="col-1 pr-3 pt-4 pb-4 pl-0">
+                  <button type="submit" class="btn btn-danger mt-2 float-right" *ngIf="objCreateEvent.orders.length > 1"
+                          (click)="removeOrder(pos)">X
+                  </button>
+                  <button type="submit" class="btn btn-warning mt-2 float-right" *ngIf="objCreateEvent.orders.length === 1"
+                          (click)="clearOrder()">L
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="col-12 table-responsive-md">
-              <table class="table table-borderless table-striped">
-                <thead>
-                <tr>
-                  <th scope="col" style="width: 8rem">Ref.</th>
-                  <th scope="col" style="width: 10rem">Modelo</th>
-                  <th scope="col" style="width: 6rem;">Cant.</th>
-                  <th scope="col">Descripcion</th>
-                  <th scope="col" style="width: 8rem;">Valor Und.</th>
-                  <th scope="col" style="width: 8rem;">Dcto</th>
-                  <th scope="col">Total</th>
-                  <th scope="col" style="width: 3rem;">-</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let order of objCreateEvent.orders; index as pos">
-                  <td style="width: 8rem">
-                    <input type="text" class="form-control" name="ref_{{order.idOrder}}" [(ngModel)]="order.ref">
-                  </td>
-                  <td style="width: 10rem">
-                    <input type="text" class="form-control" name="model_{{order.idOrder}}" [(ngModel)]="order.model">
-                  </td>
-                  <td style="width: 6rem;">
-                    <input type="number" class="form-control" name="quantity_{{order.idOrder}}"
-                           [(ngModel)]="order.quantity">
-                  </td>
-                  <td>
-                    <textarea class="form-control" style="height: 38px;" name="description_{{order.idOrder}}"
-                              [(ngModel)]="order.description"></textarea>
-                  </td>
-                  <td style="width: 8rem;">
-                    <input type="number" class="form-control" name="unitValue_{{order.idOrder}}"
-                           [(ngModel)]="order.unitValue">
-                  </td>
-                  <td style="width: 8rem;">
-                    <input type="number" class="form-control" name="discount_{{order.idOrder}}"
-                           [(ngModel)]="order.discount">
-                  </td>
-                  <td>
-                    {{ order.discount ? (order.quantity * order.unitValue) - order.discount : (order.quantity * order.unitValue)}}
-                  </td>
-                  <td style="width: 3rem;">
-                    <button type="submit" class="btn btn-danger" *ngIf="objCreateEvent.orders.length > 1"
-                            (click)="removeOrder(pos)">X
-                    </button>
-                    <button type="submit" class="btn btn-warning" *ngIf="objCreateEvent.orders.length === 1"
-                            (click)="clearOrder()">L
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <button type="submit" class="btn btn-primary" (click)="addOrder()">agregar pedido</button>
-            </div>
+            <button type="submit" class="btn btn-primary ml-3" (click)="addOrder()">agregar pedido</button>
           </div>
         </div>
         <div class="modal-footer">
