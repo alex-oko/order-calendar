@@ -1,26 +1,8 @@
-<div class="container-fluid">
-  <div class="col-12 mt-3">
-    <div class="row">
-      <div class="col-2 pl-0">
-        <h4 style="line-height: 38px;">Pedidos</h4>
-      </div>
-      <div class="col">
-        <div class="row">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-light btn-circle p-0" (click)="previousDate()">
-              <i class="material-icons">keyboard_arrow_left</i>
-            </button>
-            <h4 class="ml-3" style="line-height: 38px;">{{objActualDate.date | uppercase }}</h4>
-            <button type="button" class="btn btn-light btn-circle p-0 ml-3" (click)="nextDate()">
-              <i class="material-icons">keyboard_arrow_right</i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container-fluid pt-2 pb-2" style="height: 100vh;">
   <div class="row">
+    <!-- lista de pedidos -->
     <div class="col-2">
+      <h4 style="line-height: 38px;">Pedidos</h4>
       <p class="font-weight-light">Pedidos realizados en este mes</p>
       <div class="content-orders">
         <ul class="list-group list-group-flush">
@@ -39,25 +21,39 @@
     </div>
     <!-- Calendario -->
     <div class="col">
-      <table class="table table-borderless" style="border-collapse: initial;     height: 91vh;">
-        <thead>
-        <tr>
-          <th class="num-sem"></th>
-          <th *ngFor="let textDay of daysWeek" class="text-center">{{textDay}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let data of calendar">
-          <td class="num-sem text-center">{{data.week}}</td>
-          <td *ngFor="let day  of data.days" [ngClass]="{'not-current-month': !day.isActualMonth}" class="text-center">
-            <div [ngClass]="{'actual-day': day.actualDay}">{{day.day}}</div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="column">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-light btn-circle p-0" (click)="previousDate()">
+            <i class="material-icons">keyboard_arrow_left</i>
+          </button>
+          <h4 class="ml-3" style="line-height: 38px;">{{objActualDate.date | uppercase }}</h4>
+          <button type="button" class="btn btn-light btn-circle p-0 ml-3" (click)="nextDate()">
+            <i class="material-icons">keyboard_arrow_right</i>
+          </button>
+        </div>
+        <!-- Tabla -->
+        <table class="table table-borderless" style="border-collapse: initial;     height: 91vh;">
+          <thead>
+          <tr>
+            <th class="num-sem"></th>
+            <th *ngFor="let textDay of daysWeek" class="text-center">{{textDay}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of calendar">
+            <td class="num-sem text-center">{{data.week}}</td>
+            <td *ngFor="let day  of data.days" [ngClass]="{'holiday': day.isHoliday, 'not-current-month': !day.isActualMonth}" class="text-center">
+              <div [ngClass]="{'actual-day': day.actualDay}">{{day.day}}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Boton para crear un pedido -->
 <button type="button" class="btn btn-floating bg-redwine" data-toggle="modal" data-target="#modalCreateEvent"
         (click)="openModalCreateOrder()">
   <i class="material-icons">add</i>
