@@ -9,6 +9,7 @@
 }
 .holiday:not(.not-current-month){
   background: #e5ffeb;
+  border: none !important;
 }
 tr td:not(.num-sem){
   max-height: 150px;
