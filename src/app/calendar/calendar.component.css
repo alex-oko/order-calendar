@@ -4,10 +4,16 @@
 }
 .not-current-month{
   background: #f3f3f3;
+  color: #c7c7c7;
+  border: none !important;
+}
+.holiday:not(.not-current-month){
+  background: #e5ffeb;
 }
 tr td:not(.num-sem){
   max-height: 150px;
   width: 200px;
+  border: 1px solid #f1f1f1;
 }
 tr td.num-sem{
   background: #e8e8e8;

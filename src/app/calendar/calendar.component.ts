@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {constants} from '../utils/calendar.utils';
 import * as _ from 'lodash';
 import * as Moment from 'moment';
 import {extendMoment} from 'moment-range';
@@ -18,7 +19,7 @@ export class CalendarComponent implements OnInit {
     date: moment().format('MMMM YYYY'),
     momentFormat: undefined
   };
-  daysWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  daysWeek = constants.daysWeek;
   calendar = [];
   objCreateEvent;
   arrayOrders = [];
@@ -105,6 +106,7 @@ export class CalendarComponent implements OnInit {
             week: day.isoWeek(),
             day: day.format('DD'),
             actualDay: moment(day.format('YYYY-MM-DD')).isSame(moment().format('YYYY-MM-DD')),
+            isHoliday: _.includes(constants.holidays[day.format('MMMM')], day.format('DD')),
             isActualMonth: day.isBetween(selectMonthStart, selectMonthEnd, null, '[]')
           });
         }
