@@ -4,7 +4,7 @@ export interface ModalInterface {
     subtitle?: string;
     message?: string;
     class?: string;
-    isModalForm: boolean;
+    modalWithContent: boolean;
     isModalStatic?: boolean;
     preloader?: boolean;
     configAlert?: {
