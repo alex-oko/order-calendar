@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import {ModalInterface} from '../../interfaces/modal.interface';
 
 @Component({
   selector: 'app-modal',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
+
+  // inputs que se llenan con la informacion que se envia desde el padre
+  @Input() objInfoModal: ModalInterface;
 
   constructor() { }
 

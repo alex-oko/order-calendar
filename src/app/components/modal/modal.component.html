@@ -1,1 +1,25 @@
-<p>modal works!</p>
+<div class="modal fade" id="{{ objInfoModal.id }}" tabindex="-1" role="dialog" [attr.data-backdrop]="objInfoModal.isModalStatic ? 'static' : undefined">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content" style="border-radius: 20px;">
+      <div class="modal-header p-4" *ngIf="objInfoModal.modalWithContent" [ngClass]="{'row': objInfoModal.subtitle}">
+        <h5 class="modal-title font-spot font-weight-bold" [ngClass]="{'mt-3': objInfoModal.title !== '', 'col-12' : objInfoModal.subtitle}" id="titleModal">{{ objInfoModal.title}}</h5>
+        <p  class="col-12 text-muted mb-0" *ngIf="objInfoModal.subtitle" title="{{objInfoModal.subtitle}}">{{objInfoModal.subtitle}}</p>
+      </div>
+      <div *ngIf="objInfoModal.modalWithContent; then modalWithContent else modalAlert"></div>
+    </div>
+  </div>
+</div>
+
+<!-- modal con formulario -->
+<ng-template #modalWithContent>
+  <div class="modal-body pt-2">
+    <p *ngIf="objInfoModal.message" class="mb-0 mt-0 font-weight-normal">{{objInfoModal.message}}</p>
+    <ng-content></ng-content>
+  </div>
+</ng-template>
+
+
+<!-- modal de alerta -->
+<ng-template #modalAlert>
+  <h5>Alerta</h5>
+</ng-template>
