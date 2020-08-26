@@ -5,6 +5,7 @@ export interface ClientInterface {
   deliveryCity: string;
 }
 export interface ProductInterface {
+  idProduct?: number;
   model: string;
   size: string;
   description: string;
