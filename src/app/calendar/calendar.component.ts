@@ -3,7 +3,7 @@ import {constants} from '../utils/calendar.utils';
 import * as _ from 'lodash';
 import * as Moment from 'moment';
 import {extendMoment} from 'moment-range';
-
+import {ModalInterface} from '../interfaces/modal.interface';
 const moment = extendMoment(Moment);
 moment.locale('es');
 import * as $ from 'jquery';
@@ -24,7 +24,12 @@ export class CalendarComponent implements OnInit {
   objCreateEvent;
   arrayOrders = [];
 
+  // Modal
+  modalCreateOrder: ModalInterface;
+  modalSeeOrder: ModalInterface;
+
   constructor() {
+    this.initElement();
   }
 
   ngOnInit(): void {
@@ -81,6 +86,21 @@ export class CalendarComponent implements OnInit {
     ];
   }
 
+  initElement(): void {
+    this.modalCreateOrder = {
+      id: 'modalCreateOrder',
+      title: 'Agregar pedido',
+      modalWithContent: true,
+      class: 'modal-xl'
+    };
+    this.modalSeeOrder = {
+      id: 'modalSeeOrder',
+      title: 'Pedido xxx',
+      modalWithContent: true,
+      class: 'modal-xl'
+    };
+  }
+
   loadInfoCalendar(actualDate): void {
     const startWeek = moment(actualDate).startOf('month').startOf('isoWeek');
     const endWeek = moment(actualDate).endOf('month').endOf('isoWeek');
@@ -133,10 +153,10 @@ export class CalendarComponent implements OnInit {
   }
 
   openModalCreateOrder(): void {
-    $('#modalCreateOrder').modal('show');
+    $(`#${this.modalCreateOrder.id}`).modal('show');
   }
   openModalSeeOrder(): void {
-    $('#modalSeeOrder').modal('show');
+    $(`#${this.modalSeeOrder.id}`).modal('show');
   }
 
   addOrder(): void {
