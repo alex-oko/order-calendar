@@ -8,12 +8,14 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 
 import 'bootstrap';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    LoginComponent
+    LoginComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
