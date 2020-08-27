@@ -69,12 +69,12 @@
             <div class="col form-group">
               <label for="startDate">Fecha</label>
               <input type="text" class="form-control" id="startDate" name="startDate"
-                     [(ngModel)]="objCreateEvent.startDate">
+                     [(ngModel)]="objCreateEvent.initialDate">
             </div>
             <div class="col form-group">
               <label for="endDate">Fecha de entrega</label>
               <input type="text" class="form-control" id="endDate" name="endDate"
-                     [(ngModel)]="objCreateEvent.endDate">
+                     [(ngModel)]="objCreateEvent.finalDate">
             </div>
           </div>
         </div>
@@ -87,22 +87,22 @@
               <div class="row">
                 <div class="col form-group">
                   <label for="name">Nombre</label>
-                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="objCreateEvent.name">
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="objCreateEvent.infoClient.name">
                 </div>
                 <div class="col-2 form-group">
                   <label for="tel">Telefono</label>
                   <input type="tel" class="form-control" id="tel" name="tel"
-                         [(ngModel)]="objCreateEvent.tel">
+                         [(ngModel)]="objCreateEvent.infoClient.phone">
                 </div>
                 <div class="col form-group">
                   <label for="dir">Direccion</label>
                   <input type="text" class="form-control" id="dir" name="dir"
-                         [(ngModel)]="objCreateEvent.dir">
+                         [(ngModel)]="objCreateEvent.infoClient.address">
                 </div>
                 <div class="col-2 form-group">
                   <label for="city">Ciudad</label>
                   <input type="text" class="form-control" id="city" name="city"
-                         [(ngModel)]="objCreateEvent.city">
+                         [(ngModel)]="objCreateEvent.infoClient.deliveryCity">
                 </div>
               </div>
             </div>
@@ -110,31 +110,31 @@
             <div class="col-12 p-0">
               <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="present" name="isPresent"
-                       [(ngModel)]="objCreateEvent.isPresent">
+                       [(ngModel)]="objCreateEvent.present">
                 <label class="form-check-label" for="present">Regalo?</label>
               </div>
             </div>
             <!-- Info cliente regalo -->
             <div class="col-12 p-0">
-              <div class="row" *ngIf="objCreateEvent.isPresent">
+              <div class="row" *ngIf="objCreateEvent.present">
                 <div class="col form-group">
                   <label for="name2">Recibe</label>
-                  <input type="text" class="form-control" id="name2" name="name2" [(ngModel)]="objCreateEvent.name2">
+                  <input type="text" class="form-control" id="name2" name="name2" [(ngModel)]="objCreateEvent.deliveryInfo.name">
                 </div>
                 <div class="col-2 form-group">
                   <label for="tel2">Telefono</label>
                   <input type="tel" class="form-control" id="tel2" name="tel2"
-                         [(ngModel)]="objCreateEvent.tel2">
+                         [(ngModel)]="objCreateEvent.deliveryInfo.phone">
                 </div>
                 <div class="col form-group">
                   <label for="dir2">Direccion de entrega</label>
                   <input type="text" class="form-control" id="dir2" name="dir2"
-                         [(ngModel)]="objCreateEvent.dir">
+                         [(ngModel)]="objCreateEvent.deliveryInfo.address">
                 </div>
                 <div class="col-2 form-group">
                   <label for="city2">Ciudad</label>
                   <input type="text" class="form-control" id="city2" name="city2"
-                         [(ngModel)]="objCreateEvent.city2">
+                         [(ngModel)]="objCreateEvent.deliveryInfo.deliveryCity">
                 </div>
               </div>
             </div>
@@ -143,43 +143,43 @@
 
         <!-- Productos -->
         <h5 class="ml-3 mt-3">Productos</h5>
-        <div class="col-12 p-0" *ngFor="let order of objCreateEvent.orders; index as pos; odd as isOdd">
+        <div class="col-12 p-0" *ngFor="let order of objCreateEvent.products; index as pos; odd as isOdd">
           <div class="column p-3" [ngClass]="{'bg-gray': isOdd}">
             <div class="col-12 p-0">
               <div class="row">
                 <div class="col form-group">
-                  <label for="model_{{order.idOrder}}">Modelo</label>
-                  <input type="text" class="form-control" id="model_{{order.idOrder}}" name="model_{{order.idOrder}}" [(ngModel)]="order.model">
+                  <label for="model_{{order.idProduct}}">Modelo</label>
+                  <input type="text" class="form-control" id="model_{{order.idProduct}}" name="model_{{order.idProduct}}" [(ngModel)]="order.model">
                 </div>
                 <div class="col form-group">
-                  <label for="size_{{order.idOrder}}">Tamaño</label>
-                  <input type="text" class="form-control" id="size_{{order.idOrder}}" name="size_{{order.idOrder}}" [(ngModel)]="order.size">
+                  <label for="size_{{order.idProduct}}">Tamaño</label>
+                  <input type="text" class="form-control" id="size_{{order.idProduct}}" name="size_{{order.idProduct}}" [(ngModel)]="order.size">
                 </div>
                 <div class="col-1 form-group">
-                  <label for="cant_{{order.idOrder}}">Cant.</label>
-                  <input type="number" class="form-control" id="cant_{{order.idOrder}}" name="cant_{{order.idOrder}}" [(ngModel)]="order.cant">
+                  <label for="cant_{{order.idProduct}}">Cant.</label>
+                  <input type="number" class="form-control" id="cant_{{order.idProduct}}" name="cant_{{order.idProduct}}" [(ngModel)]="order.quantity">
                 </div>
                 <div class="col form-group">
-                  <label for="customValue_{{order.idOrder}}">Valor cambios</label>
-                  <input type="number" class="form-control" id="customValue_{{order.idOrder}}" name="customValue_{{order.idOrder}}" [(ngModel)]="order.customValue">
+                  <label for="customValue_{{order.idProduct}}">Valor cambios</label>
+                  <input type="number" class="form-control" id="customValue_{{order.idProduct}}" name="customValue_{{order.idProduct}}" [(ngModel)]="order.customPrice">
                 </div>
                 <div class="col form-group">
-                  <label for="unitValue_{{order.idOrder}}">Valor undidad</label>
-                  <input type="number" class="form-control" id="unitValue_{{order.idOrder}}" name="unitValue_{{order.idOrder}}" [(ngModel)]="order.unitValue">
+                  <label for="unitValue_{{order.idProduct}}">Valor undidad</label>
+                  <input type="number" class="form-control" id="unitValue_{{order.idProduct}}" name="unitValue_{{order.idProduct}}" [(ngModel)]="order.unitPrice">
                 </div>
                 <div class="col-1 form-group">
-                  <label for="discount_{{order.idOrder}}">Dto.</label>
-                  <input type="number" class="form-control" id="discount_{{order.idOrder}}" name="discount_{{order.idOrder}}" [(ngModel)]="order.discount">
+                  <label for="discount_{{order.idProduct}}">Dto.</label>
+                  <input type="number" class="form-control" id="discount_{{order.idProduct}}" name="discount_{{order.idProduct}}" [(ngModel)]="order.discount">
                 </div>
                 <div class="col form-group pr-0">
-                  <label for="total_{{order.idOrder}}">Total</label>
-                  <input type="number" class="form-control" id="total_{{order.idOrder}}" name="total_{{order.idOrder}}" [(ngModel)]="order.total">
+                  <label>Total</label>
+                  <p>-------</p>
                 </div>
                 <div class="col-1 pr-3 pt-4 pb-4 pl-0">
-                  <button type="submit" class="btn btn-danger mt-2 float-right" *ngIf="objCreateEvent.orders.length > 1"
+                  <button type="submit" class="btn btn-danger mt-2 float-right" *ngIf="objCreateEvent.products.length > 1"
                           (click)="removeOrder(pos)">X
                   </button>
-                  <button type="submit" class="btn btn-warning mt-2 float-right" *ngIf="objCreateEvent.orders.length === 1"
+                  <button type="submit" class="btn btn-warning mt-2 float-right" *ngIf="objCreateEvent.products.length === 1"
                           (click)="clearOrder()">L
                   </button>
                 </div>
@@ -187,8 +187,8 @@
             </div>
             <div class="col-5 p-0">
               <div class="form-group">
-                <label for="description_{{order.idOrder}}">Description</label>
-                <textarea class="form-control" id="description_{{order.idOrder}}" name="description_{{order.idOrder}}" [(ngModel)]="order.description"></textarea>
+                <label for="description_{{order.idProduct}}">Description</label>
+                <textarea class="form-control" id="description_{{order.idProduct}}" name="description_{{order.idProduct}}" [(ngModel)]="order.description"></textarea>
               </div>
             </div>
           </div>

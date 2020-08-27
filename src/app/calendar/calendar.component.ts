@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {constants} from '../utils/calendar.utils';
+import {ModalInterface} from '../interfaces/modal.interface';
+import {ClientInterface, OrderInterface, ProductInterface} from '../interfaces/order.interface';
+
 import * as _ from 'lodash';
 import * as Moment from 'moment';
 import {extendMoment} from 'moment-range';
-import {ModalInterface} from '../interfaces/modal.interface';
 const moment = extendMoment(Moment);
 moment.locale('es');
 import * as $ from 'jquery';
@@ -21,7 +23,7 @@ export class CalendarComponent implements OnInit {
   };
   daysWeek = constants.daysWeek;
   calendar = [];
-  objCreateEvent;
+  objCreateEvent: OrderInterface;
   arrayOrders = [];
 
   // Modal
@@ -33,11 +35,6 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.objCreateEvent = {
-      orders: [{
-        idOrder: 1
-      }]
-    };
     this.objActualDate.momentFormat = moment();
     this.loadInfoCalendar(this.objActualDate.momentFormat);
     this.arrayOrders = [
@@ -87,6 +84,37 @@ export class CalendarComponent implements OnInit {
   }
 
   initElement(): void {
+    this.objCreateEvent = {
+      initialDate: undefined,
+      finalDate: undefined,
+      infoClient: {
+        name: undefined,
+        phone: undefined,
+        address: undefined,
+        deliveryCity: undefined
+      },
+      deliveryInfo: {
+        name: undefined,
+        phone: undefined,
+        address: undefined,
+        deliveryCity: undefined
+      },
+      present: false,
+      products: [
+        {
+          idProduct: 1,
+          model: undefined,
+          size: undefined,
+          description: undefined,
+          quantity: undefined,
+          customPrice: undefined,
+          unitPrice: undefined,
+          discount: undefined
+        }
+      ]
+    };
+
+    // Modals
     this.modalCreateOrder = {
       id: 'modalCreateOrder',
       title: 'Agregar pedido',
@@ -161,30 +189,32 @@ export class CalendarComponent implements OnInit {
 
   addOrder(): void {
     const obj = {
-      idOrder: _.max(_.map(this.objCreateEvent.orders, (order) => order.idOrder)) + 1,
-      ref: undefined,
+      idProduct: _.max(_.map(this.objCreateEvent.products, (order) => order.idProduct)) + 1,
       model: undefined,
-      quantity: 1,
+      size: undefined,
       description: undefined,
-      unitValue: 0,
-      discount: 0
+      quantity: undefined,
+      customPrice: undefined,
+      unitPrice: undefined,
+      discount: undefined
     };
-    this.objCreateEvent.orders.push(obj);
+    this.objCreateEvent.products.push(obj);
   }
 
   removeOrder(pos): void {
-    this.objCreateEvent.orders.splice(pos, 1);
+    this.objCreateEvent.products.splice(pos, 1);
   }
 
   clearOrder(): void {
-    this.objCreateEvent.orders[0] = {
-      idOrder: 0,
-      ref: undefined,
+    this.objCreateEvent.products[0] = {
+      idProduct: 0,
       model: undefined,
-      quantity: 1,
+      size: undefined,
       description: undefined,
-      unitValue: 0,
-      discount: 0
+      quantity: undefined,
+      customPrice: undefined,
+      unitPrice: undefined,
+      discount: undefined
     };
   }
 
