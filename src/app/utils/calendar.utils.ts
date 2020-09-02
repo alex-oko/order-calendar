@@ -14,7 +14,7 @@ export const constants = {
     agosto: ['07', '17'],
     septiembre: [],
     octubre: ['12'],
-    noviembre: ['2', '16'],
-    diciembre: ['8', '25']
+    noviembre: ['02', '16'],
+    diciembre: ['08', '25']
   }
 };
