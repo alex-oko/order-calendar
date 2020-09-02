@@ -6,7 +6,33 @@
 .bg-gray{
   background: #f3f3f3;
 }
+.border-gray{
+  border-bottom: 1px solid #dedede;
+}
+.without-border{
+  border: none !important;
+}
 
+/*========================== Inputs ==============================*/
+.form-group label.label-input{
+  margin: 0;
+  margin-left: 3px;
+  position: relative;
+  background: white;
+  width: auto;
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.form-group input:not([type='checkbox']) ,.form-group textarea{
+  margin-top: -11px;
+}
+.form-control{
+  padding: .75rem .75rem !important;
+  font-size: .9rem !important;
+  height: auto !important;
+  border-radius: .5rem !important;
+}
 /*========================== Card ==============================*/
 .card {
   border: none !important;
