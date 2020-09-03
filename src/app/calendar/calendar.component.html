@@ -6,14 +6,14 @@
       <p class="font-weight-light">Pedidos realizados en este mes</p>
       <div class="content-orders">
         <ul class="list-group list-group-flush">
-          <button class="list-group-item list-group-item-action p-2" *ngFor="let order of arrayOrders" (click)="openModalSeeOrder()">
+          <button class="list-group-item list-group-item-action p-2" *ngFor="let order of arrayOrders" (click)="openModalSeeOrder(order)">
             <div class="d-flex w-100 justify-content-between">
-              <h6 class="mb-1">{{order.name}}</h6>
-              <span class="font-weight-bold">{{order.deliveryOrder > 1 ? order.deliveryOrder + ' dias': order.deliveryOrder + ' dia'}}</span>
+              <h6 class="mb-1">{{order.infoClient.name}}</h6>
+              <span class="font-weight-bold">{{order.finalDateMoment > 1 ? order.finalDateMoment + ' dias': order.finalDateMoment + ' dia'}}</span>
             </div>
             <div class="d-flex w-100 justify-content-between">
               <h6 class="mb-1 font-weight-lighter">Articulos pedidos</h6>
-              <span class="font-weight-bold">{{order.orders.length}}</span>
+              <span class="font-weight-bold">{{order.products.length}}</span>
             </div>
           </button>
         </ul>
@@ -204,6 +204,50 @@
 </app-modal>
 
 <!-- Modal ver -->
-<app-modal [objInfoModal]="modalSeeOrder"></app-modal>
+<app-modal [objInfoModal]="modalSeeOrder">
+  <div class="p-2" *ngIf="selectedOrder">
+    <div class="col-12 p-0">
+      <div class="row">
+        <div class="col">
+          <p class="m-0" style="font-weight: 400;">Direccion de entrega:</p>
+          <p class="m-0" style="font-weight: 600;">{{selectedOrder['infoClient']['address']}}</p>
+        </div>
+        <div class="col">
+          <p class="m-0" style="font-weight: 400;">Telefono de contacto:</p>
+          <p class="m-0" style="font-weight: 600;">{{selectedOrder['infoClient']['phone']}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 p-0 mt-5 mb-5 border-gray" *ngFor="let product of selectedOrder.products">
+      <div class="row mb-3">
+         <div class="col-2">
+           <img src="https://scontent.fclo1-2.fna.fbcdn.net/v/t1.0-9/107812245_4536229833057552_2341255372354391007_o.jpg?_nc_cat=105&_nc_sid=9267fe&_nc_ohc=UOXMko4r-DcAX8mVTqT&_nc_ht=scontent.fclo1-2.fna&oh=e3e136bb52796ebbf8e7c0116826b6cc&oe=5F774AF9" class="w-auto mw-100 h-auto max-vh-100 mx-auto position-relative">
+         </div>
+        <div class="col">
+          <div class="col-6 p-0">
+            <div class="row">
+              <div class="col">
+                <p class="m-0" style="font-weight: 400;">Modelo</p>
+                <p class="m-0" style="font-weight: 600;">{{product.model}}</p>
+              </div>
+              <div class="col">
+                <p class="m-0" style="font-weight: 400;">Tamaño</p>
+                <p class="m-0" style="font-weight: 600;">{{product.size}}</p>
+              </div>
+              <div class="col">
+                <p class="m-0" style="font-weight: 400;">Cantidad</p>
+                <p class="m-0" style="font-weight: 600;">{{product.quantity}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mt-3 p-0">
+            <p class="m-0" style="font-weight: 400;">Descripcion</p>
+            <p class="m-0" style="font-weight: 600;">{{product.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>
 
 

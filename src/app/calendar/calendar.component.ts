@@ -24,7 +24,8 @@ export class CalendarComponent implements OnInit {
   daysWeek = constants.daysWeek;
   calendar = [];
   objCreateEvent: OrderInterface;
-  arrayOrders = [];
+  arrayOrders: OrderInterface[];
+  selectedOrder: OrderInterface;
 
   // Modal
   modalCreateOrder: ModalInterface;
@@ -39,46 +40,27 @@ export class CalendarComponent implements OnInit {
     this.loadInfoCalendar(this.objActualDate.momentFormat);
     this.arrayOrders = [
       {
-        endDate: moment().add(15, 'd'),
-        deliveryOrder: moment().add(15, 'd').diff(moment(), 'days'),
-        name: 'Alexis Corrale Perea',
-        telephone: 3162419244,
-        address: 'cra 7 # 6-63',
-        isPresent: false,
-        isPersonalized: true,
-        receives: 'Alexis Corrale Perea',
-        recipientsPhone: 3162419244,
-        deliveryAddress: 'cra 7 # 6-63',
-        orders: [{
-          idOrder: 1,
-          ref: 'AB-35',
-          model: 'Alfred',
-          quantity: 4,
-          description: 'Se desea que se tenga un bolsillo adicional ',
-          unitValue: 150000,
-          discount: 50000
-        }],
-      },
-      {
-        endDate: moment().add(15, 'd'),
-        deliveryOrder: moment().add(15, 'd').diff(moment(), 'days'),
-        name: 'Alexis Corrale Perea',
-        telephone: 3162419244,
-        address: 'cra 7 # 6-63',
-        isPresent: false,
-        isPersonalized: true,
-        receives: 'Alexis Corrale Perea',
-        recipientsPhone: 3162419244,
-        deliveryAddress: 'cra 7 # 6-63',
-        orders: [{
-          idOrder: 1,
-          ref: 'AB-35',
-          model: 'Alfred',
-          quantity: 4,
-          description: 'Se desea que se tenga un bolsillo adicional ',
-          unitValue: 150000,
-          discount: 50000
-        }],
+        initialDate: '',
+        finalDate: '',
+        finalDateMoment: moment().add(15, 'd').diff(moment(), 'days'),
+        infoClient: {
+          name: 'alexis corrales perea',
+          phone: '316-241-9244',
+          address: 'cra 7 # 6 - 63, la esmeralda',
+          deliveryCity: 'jamundi'
+        },
+        present: false,
+        products: [
+          {
+            model: 'modelo 1',
+            size: 'grande',
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+            quantity: 2,
+            customPrice: 0,
+            unitPrice: 0,
+            discount: 0
+          }
+        ]
       }
     ];
   }
@@ -123,9 +105,9 @@ export class CalendarComponent implements OnInit {
     };
     this.modalSeeOrder = {
       id: 'modalSeeOrder',
-      title: 'Pedido xxx',
+      title: '',
       modalWithContent: true,
-      class: 'modal-xl'
+      class: 'modal-lg'
     };
   }
 
@@ -183,7 +165,9 @@ export class CalendarComponent implements OnInit {
   openModalCreateOrder(): void {
     $(`#${this.modalCreateOrder.id}`).modal('show');
   }
-  openModalSeeOrder(): void {
+  openModalSeeOrder(info: OrderInterface): void {
+    this.selectedOrder = info;
+    this.modalSeeOrder.title = info.infoClient.name;
     $(`#${this.modalSeeOrder.id}`).modal('show');
   }
 
