@@ -17,6 +17,7 @@ export interface ProductInterface {
 export interface OrderInterface {
   initialDate: string;
   finalDate: string;
+  finalDateMoment?: any;
   infoClient: ClientInterface;
   deliveryInfo?: ClientInterface;
   present: boolean;
